@@ -32,12 +32,60 @@ Repo ini berisi semua aset, alat, rekomendasi, dan konten VFX yang dapat digunak
 1. **Runway ML** — Free tier
 2. **Pika Labs** — Free tier
 3. **Stable Video Diffusion** — Open source
+4. **Kaiber** — Free tier
 
 ## 📊 Status Proyek:
 
 - ✅ **Token GitHub:** Tervalidasi
 - ✅ **Koneksi:** Berhasil
 - ✅ **Repo:** Aktif
+
+---
+
+## 🗂️ STRUKTUR FOLDER:
+
+```
+vfx-gratis/
+├── assets/
+│   ├── 3d-models/     # 3D models dari Poly Haven
+│   ├── textures/      # PBR textures dari ambientCG
+│   └── hdri/          # HDRI dari Poly Haven
+├── footage/
+│   ├── videos/        # Stock footage dari Pexels/Pixabay
+│   └── images/        # Still images
+├── projects/
+│   └── vfx-001/       # VFX project pertama
+├── docs/
+│   ├── setup.md
+│   ├── workflow.md
+│   └── asset-sources.md
+└── README.md
+```
+
+---
+
+## 🚀 INSTALLASI BLENDER (GRATIS):
+
+```bash
+# Download Blender 4.x
+wget https://download.blender.org/release/Blender4.0/blender-4.0.0-linux-x64.tar.xz
+tar -xf blender-4.0.0-linux-x64.tar.xz -C /opt/  # atau /tmp/
+
+# Jalankan
+/opt/blender-4.0.0-linux-x64/blender
+```
+
+---
+
+## 📈 WORKFLOW VFX GRATIS:
+
+1. **Model:** Import 3D model dari Poly Haven
+2. **Texturing:** Apply PBR textures dari ambientCG
+3. **Lighting:** Setup HDRI dari Poly Haven
+4. **Animation:** Animate di Blender
+5. **Compositing:** Compositing di Natron/GIMP
+6. **Render:** Render di Blender Cycles/Eevee
+7. **Export:** Export via FFmpeg
 
 ---
 
