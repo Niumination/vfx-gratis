@@ -9,9 +9,10 @@
 - **Status:** ⏳ Menunggu
 
 ### 2. 💡 HDRI / LIGHTING:
-- **Source:** Poly Haven HDRI
-- **Path:** `assets/hdri/awakening.hdr`
-- **Status:** ⏳ Menunggu
+- **Source:** Poly Haven HDRI (Stinson Beach)
+- **Path:** `assets/hdri/StinsonBeach.hdr`
+- **Status:** ✅ **DOWNLOADED** (1.4M)
+- **Size:** 1.4 MB
 
 ### 3. 🎨 TEXTURES:
 - **Source:** ambientCG
@@ -33,8 +34,8 @@
 ## 📈 PRIORITAS:
 
 1. ✅ Particle system design — **DONE**
-2. ⏳ Model humanoid — **PENDING**
-3. ⏳ HDRI — **PENDING**
+2. ✅ HDRI (Stinson Beach) — **DOWNLOADED**
+3. ⏳ Model humanoid — **PENDING**
 4. ⏳ Textures — **PENDING**
 
 ---
