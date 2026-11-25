@@ -1,6 +1,6 @@
 """
 HUMAN-001 - Awakening Protocol
-Blender Scene Setup Script with HDRI Integration
+Blender Scene Setup Script with HDRI + Camera Integration
 
 Phase 1: Data Stream - Particle system
 Phase 2: Energy Core - Energy burst  
@@ -39,8 +39,18 @@ scene.frame_end = 120
 world = bpy.data.worlds.new("AwakeningWorld")
 scene.world = world
 world.use_nodes = True
-world.node_tree.nodes["Background"].inputs[0].default_value = (0.01, 0.01, 0.02, 1.0)
-world.node_tree.nodes["Background"].inputs[1].default_value = 1.0
+world.node_tree.nodes.clear()
+
+bg = world.node_tree.nodes.new(type='ShaderNodeBackground')
+bg.inputs[0].default_value = (0.01, 0.01, 0.02, 1.0)
+bg.inputs[1].default_value = 1.0
+
+output = world.node_tree.nodes.new(type='ShaderNodeOutputWorld')
+world.node_tree.links.new(bg.outputs[0], output.inputs[0])
+
+img = world.node_tree.nodes.new(type='ShaderNodeTexEnvironment')
+img.image = bpy.data.images.load("/tmp/vfx-gratis-clone/assets/hdri/StinsonBeach.hdr")
+world.node_tree.links.new(img.outputs[0], bg.inputs[0])
 
 print("HUMAN_001 SCENE_SETUP_COMPLETE")
 print("ENGINE:", scene.render.engine)
@@ -48,29 +58,18 @@ print("RESOLUTION:", scene.render.resolution_x, "x", scene.render.resolution_y)
 print("FRAMES:", scene.frame_start, "-", scene.frame_end)
 print("WORLD:", scene.world.name)
 
-# Create HDRI world nodes properly for Blender 4.0
-# Clear existing nodes
-world.node_tree.nodes.clear()
-world.use_nodes = True
-
-# Add Background node
-bg = world.node_tree.nodes.new(type='ShaderNodeBackground')
-bg.inputs[0].default_value = (0.01, 0.01, 0.02, 1.0)
-bg.inputs[1].default_value = 1.0
-
-# Add World Output node
-output = world.node_tree.nodes.new(type='ShaderNodeOutputWorld')
-world.node_tree.links.new(bg.outputs[0], output.inputs[0])
-
-# Add Image Texture node for HDRI
-img = world.node_tree.nodes.new(type='ShaderNodeTexEnvironment')
-img.image = bpy.data.images.load("/tmp/vfx-gratis-clone/assets/hdri/StinsonBeach.hdr")
-
-# Link
-world.node_tree.links.new(img.outputs[0], bg.inputs[0])
-
 print("HDRI_SETUP_COMPLETE: StinsonBeach.hdr")
-print("HUMAN_001_SCENE_READY")
+
+# Add Camera
+cam_data = bpy.data.cameras.new("MainCamera")
+cam = bpy.data.objects.new("MainCamera", cam_data)
+scene.collection.objects.link(cam)
+cam.location = (0, -8, 2)
+cam.rotation_euler = (math.radians(75), 0, 0)
+cam_data.lens = 50
+scene.camera = cam
+
+print("CAMERA_ADDED: MainCamera")
 
 # Save scene
 bpy.ops.wm.save_as_mainfile(filepath="/tmp/vfx-gratis-clone/projects/vfx-001/humanoid_awakening.blend")
